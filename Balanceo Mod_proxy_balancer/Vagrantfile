@@ -1,0 +1,29 @@
+$script = <<-'SCRIPT'
+sudo -i
+yum install -y httpd
+yum install -y firewalld
+firewall-cmd --permanent --add-service=http
+firewall-cmd --reload
+SCRIPT
+
+Vagrant.configure("2") do |config|
+
+	config.vm.define :balanceador do |balanceador|
+		balanceador.vm.box = "bento/centos-7.9"
+		balanceador.vm.network :private_network, ip: "192.168.50.20"
+		balanceador.vm.hostname = "balanceador"
+		balanceador.vm.provision "shell", inline: $script		
+	end
+		config.vm.define :web1 do |web1|
+		web1.vm.box = "bento/centos-7.9"
+		web1.vm.network :private_network, ip: "192.168.50.21"
+		web1.vm.hostname = "web1"
+		web1.vm.provision "shell", inline: $script		
+	end
+		config.vm.define :web2 do |web2|
+		web2.vm.box = "bento/centos-7.9"
+		web2.vm.network :private_network, ip: "192.168.50.22"
+		web2.vm.hostname = "web2"
+		web2.vm.provision "shell", inline: $script	 
+	end
+end
