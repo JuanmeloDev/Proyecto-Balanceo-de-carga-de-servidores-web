@@ -8,9 +8,6 @@ El proyecto desarrollado consta de dos partes, un balanceador implementado con b
 
 ### Desarrollado por:
 - Juan José Melo Montenegro.
-- Juan Sebastian Martinez Lozano.
-- Alvaro Murillo Garces.
-- German Camilo Coral Martinez.
 
 ------------
 #### Requerimientos Previos.
